@@ -1,0 +1,13 @@
+#phone{--glass-presence:.45;--track-weight:1.35;--track-clarity:.8}
+#phone[data-transparency=air]{--glass-presence:.23;--track-weight:1.2;--track-clarity:.7}
+#phone[data-transparency=water]{--glass-presence:.65;--track-weight:1.5;--track-clarity:.85}
+.glass-orb,.player-orb{border:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none}
+.glass-orb:after,.player-orb:after{display:none}
+.glass-orb:before,.player-orb:before{inset:-16px;opacity:var(--glass-presence);border:0;box-shadow:none;background:conic-gradient(from -30deg,#ffffffcc,transparent 70deg,color-mix(in srgb,var(--accent-deep) 20%,transparent) 110deg,#ffffffbb 190deg,transparent 260deg,#ffffffcc);mask:radial-gradient(circle,transparent 28%,#000 40%,#000 44%,#0008 51%,#0002 61%,transparent 71%)}
+.glass-orb .orb-light{inset:-16px;border:0;background:conic-gradient(from 40deg,transparent,#ffffffaa,transparent 130deg,transparent);mask:radial-gradient(circle,transparent 30%,#000 43%,#0006 50%,transparent 69%);opacity:.25}
+.track-lines{opacity:var(--track-clarity)}
+.track-lines circle{stroke-width:var(--track-weight);opacity:.65}
+.track-lines circle:first-child{opacity:.2}
+.track-lines circle:nth-child(2){opacity:.4}
+.track-dot{opacity:.55}
+.audio-light{inset:-16px;mask:radial-gradient(circle,transparent 30%,#000 42%,#0008 51%,transparent 68%)}

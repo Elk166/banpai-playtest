@@ -1,0 +1,30 @@
+/* Current material system, without changing profile actions or information. */
+#screen-profile .profile-symbol{width:21px;height:21px;flex:0 0 21px;display:block;color:var(--accent-deep)}
+#screen-profile .profile-avatar,#screen-profile .cover{background:linear-gradient(145deg,#ffffffb3,var(--accent-soft));color:var(--accent-deep);border:1px solid #ffffffb3;box-shadow:inset 1px 2px 2px #ffffffb3,0 7px 16px -9px #24372a33}
+#screen-profile .profile-avatar{border-radius:50%;font-weight:400}
+#screen-profile .cover{display:grid;place-items:center;border-radius:14px;width:38px;height:38px;flex:0 0 38px}
+#screen-profile .p-item .play{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#ffffff4d;border:1px solid #ffffff80;flex-shrink:0}
+#screen-profile .p-item .play .profile-symbol{width:16px;height:16px;fill:currentColor;stroke-width:0}
+#screen-profile .stats{gap:8px}#screen-profile .stat{border-radius:15px;background:#ffffff3d;border:1px solid #ffffff80}
+#screen-profile .sub-card{display:flex;align-items:center;gap:12px;padding:16px;min-height:82px;border-radius:18px;background:linear-gradient(130deg,#ffffff66,#ffffff1a);border:1px solid #ffffff8c}
+#screen-profile .sub-card>.txt{display:block;flex:1;min-width:0;width:auto}#screen-profile .sub-card .txt b,#screen-profile .sub-card .txt span{display:block;white-space:normal;word-break:normal;line-height:1.6;width:auto}
+#screen-profile .sub-card button{flex:0 0 auto;width:auto;padding:8px 12px;margin:0;font-size:11px;border-radius:18px;background:#ffffff70}
+#screen-profile .settings{background:#ffffff30;border-radius:16px;padding:0 12px}#screen-profile .setting-row{display:flex;align-items:center;gap:10px;min-height:48px;font-size:12px;line-height:1.5}#screen-profile .setting-row input,#screen-profile .setting-row>span{margin-left:auto}
+#screen-profile .p-item .txt{min-width:0}#screen-profile .p-item .txt b{font-size:13px;line-height:1.5}#screen-profile .p-item .txt span{font-size:10px;line-height:1.5}
+#screen-profile .p-head b{font-size:14px;font-weight:500}
+#screen-player .player-pet{width:clamp(76px,24vw,96px);height:clamp(76px,24vw,96px)}
+.music-visual{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}.music-visual path{fill:none;stroke:var(--accent-deep);stroke-width:.65;stroke-linecap:round}.music-visual path:nth-child(2){stroke-width:1;stroke:var(--accent)}
+#screen-profile{background:radial-gradient(ellipse at 5% 8%,#ffffffb3,transparent 52%),linear-gradient(150deg,var(--paper),var(--accent-soft))}#screen-profile .profile-avatar{color:var(--accent-deep)!important}#screen-profile .p-item .txt b{color:var(--ink)}
+
+/* Approved reference: scene-coloured orbital tracks and scene listening clock. */
+#screen-player .player-stage{padding:0 0 16px;overflow:visible}
+#screen-player .player-orb{width:106%;height:auto;aspect-ratio:1;max-height:49svh;flex:0 1 auto;margin:0 0 14px;border:0;border-radius:0;background:none;box-shadow:none;isolation:isolate;transform:none!important}
+#screen-player .player-orb::before,#screen-player .player-orb::after,#screen-player .player-orb .audio-light,#screen-player .player-orb .etched-tracks{display:none}
+.orbital-canvas{display:block;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#screen-player .listening-clock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:var(--accent-deep)}
+#screen-player .listening-time{font-size:clamp(36px,11vw,46px);font-weight:300;letter-spacing:.07em;line-height:1.25;font-variant-numeric:tabular-nums}
+#screen-player .listening-caption{font-size:11px;line-height:1.6;margin-top:6px;color:var(--accent-deep)}
+#screen-player .player-title{font-size:19px;line-height:1.4;margin:6px 24px 0;max-width:calc(100% - 48px);text-wrap:balance;overflow-wrap:anywhere}
+#screen-player .player-meta{font-size:10px;line-height:1.5;margin:6px 24px 0}
+#screen-player .player-tags{display:none}
+@media(max-height:650px){#screen-player .player-orb{max-height:40svh;margin-bottom:8px}#screen-player .listening-time{font-size:36px}#screen-player .player-title{font-size:17px}#screen-player .player-stage{padding-bottom:8px}}

@@ -1,0 +1,66 @@
+#open-scenes{display:none}
+#screen-main .home-state-zone .status{padding:6px 10px;font-size:11px;background:#ffffff4d;backdrop-filter:blur(16px);border:1px solid #ffffff99;border-radius:14px}
+#screen-main .home-state-zone .status b{font-size:14px}
+#screen-main .section-title{font-size:11px;margin:12px 0 8px;letter-spacing:.04em}
+#screen-main .rec-card,#screen-main .rec-card.primary{min-height:88px;padding:12px;display:grid;grid-template-rows:28px 20px;gap:8px;align-content:center;justify-items:start;position:relative}
+#screen-main .rec-card .name,#screen-main .rec-card.primary .name{font-size:14px;line-height:20px;margin:0;grid-row:2}
+#screen-main .rec-card .scene-symbol{position:static;translate:none;transform:none;width:26px;height:26px;grid-row:1;grid-column:1;align-self:center}
+#screen-main .rec-card .cap{position:absolute;right:10px;top:10px;height:12px}
+#screen-main .rec-card .cap .pill,#screen-main .rec-card:before{display:none}
+.quiet-mark{display:none}
+.glass-orb{width:220px;height:220px;border-radius:50%;border:7px solid #ffffff38;box-shadow:inset 1px 2px 5px #ffffffd9,1px 14px 28px #36554112,inset -2px -2px 7px #39544217;position:relative;background:radial-gradient(circle at 28% 17%,#ffffff55,transparent 65%);isolation:isolate}
+.glass-orb:after{content:'';position:absolute;inset:13px;border:1px solid #ffffff99;border-radius:50%;pointer-events:none}
+.companion{padding:0;touch-action:none;cursor:grab;color:var(--accent-deep)}
+.companion:active{cursor:grabbing}
+.orb-light{position:absolute;inset:-6px;border:1px solid #ffffffbb;border-right-color:transparent;border-bottom-color:transparent;border-radius:50%;opacity:.65;pointer-events:none}
+.orb-satellite{position:absolute;top:26px;right:29px;width:5px;height:5px;background:var(--accent-deep);opacity:.45;border-radius:50%;pointer-events:none}
+.greet .orb-light{animation:glass-greeting .8s ease-out}
+.greet .orb-satellite{animation:satellite-greeting .8s ease-out}
+.player-orb{border:7px solid #ffffff55;box-shadow:inset 1px 2px 5px #ffffffdd,0 12px 25px #36554112;background:radial-gradient(circle at 30% 20%,#ffffff66,transparent 60%);transform:translate(var(--sound-x,0px),var(--sound-y,0px));isolation:isolate}
+.player-orb:before{border:1px solid #ffffffaa}
+.player-orb:after{opacity:var(--sound-light,.2);animation:none;background:radial-gradient(circle,#ffffffbb,transparent);box-shadow:none}
+.audio-light{position:absolute;inset:5px;border-radius:50%;pointer-events:none;background:conic-gradient(from var(--sound-angle,35deg),transparent 0%,#ffffffaa 16%,transparent 37%,#ffffff55 62%,transparent 83%);mask:radial-gradient(circle,transparent 65%,#000 66%,#000 70%,transparent 71%);opacity:var(--sound-light,.2)}
+.player-canvas{display:none}
+.player-orb .pulse,.player-orb .wave{display:none}
+.play-big,.like,.back{backdrop-filter:blur(14px);box-shadow:inset 0 1px 2px #ffffff99!important}
+#phone .play-big{background:linear-gradient(145deg,var(--accent),var(--accent-deep));border:1px solid #ffffff66}
+#phone .play-big:before,#phone .play-big:after{display:none}
+#phone .like,#phone .back{background:#ffffff42;border:1px solid #ffffff88;border-radius:50%}
+#phone .like.liked{background:var(--accent-soft)}
+#phone .back:before{display:none}
+.swipe-cue{width:25px;height:3px;background:var(--accent-deep);opacity:.25;border-radius:3px;margin:15px auto 0}
+#screen-main .main-body{touch-action:pan-x}
+#screen-player .player-stage{touch-action:none}
+@keyframes glass-greeting{0%{opacity:.5;rotate:0deg}40%{opacity:1}100%{opacity:.65;rotate:70deg}}
+@keyframes satellite-greeting{40%{opacity:.9}100%{opacity:.45}}
+@media(max-width:360px){.glass-orb{width:200px;height:200px}}
+@media(prefers-reduced-motion:reduce){.greet *{animation:none}}
+/* Transmitted colour, directional reflection and two sharply defined glass edges. */
+#screen-main,#screen-player{background:radial-gradient(ellipse at 5% 7%,#ffffffbf,transparent 52%),radial-gradient(ellipse at 100% 62%,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%),linear-gradient(155deg,var(--paper),var(--accent-soft))}
+[data-atmosphere=halo] .atmosphere-hero{background:radial-gradient(ellipse at 22% 30%,#ffffffb3,transparent 42%),radial-gradient(ellipse at 80% 72%,color-mix(in srgb,var(--accent-deep) 18%,transparent),transparent 49%)}
+.glass-orb,.player-orb{border:1px solid #ffffffb3;background:transparent;box-shadow:1px 18px 26px -9px color-mix(in srgb,var(--accent-deep) 24%,transparent),inset 0 1px 1px #fff,inset 0 -1px 2px color-mix(in srgb,var(--accent-deep) 28%,transparent);border-radius:50%}
+.glass-orb:before,.player-orb:before{content:'';position:absolute;inset:0;width:auto;height:auto;border:0;border-radius:50%;background:conic-gradient(from -28deg,#ffffffed 0deg,#ffffff22 52deg,color-mix(in srgb,var(--accent-deep) 21%,transparent) 110deg,#ffffff99 153deg,#ffffffed 193deg,#ffffff11 244deg,color-mix(in srgb,var(--accent-deep) 12%,transparent) 292deg,#ffffffed 360deg);mask:radial-gradient(circle,transparent 57.5%,#000 59%,#000 70%,transparent 71%);opacity:1;pointer-events:none}
+.glass-orb:after,.player-orb:after{content:'';position:absolute;inset:22px;width:auto;height:auto;border-radius:50%;border:1px solid #ffffffcf;background:transparent;box-shadow:0 2px 4px color-mix(in srgb,var(--accent-deep) 20%,transparent),inset 0 1px 2px #ffffffcc;opacity:1;pointer-events:none}
+.glass-orb .orb-light{inset:3px;border-width:2px;border-top-color:#fff;border-left-color:#ffffffbb;border-right-color:#ffffff11;border-bottom-color:#ffffff55;opacity:.7}
+.audio-light{inset:0;mask:radial-gradient(circle,transparent 59%,#000 60%,#000 70%,transparent 71%);mix-blend-mode:screen}
+#phone .like,#phone .back,#phone .avatar,#phone .device{background:linear-gradient(140deg,#ffffff94,#ffffff22 65%,#ffffff66);border:1px solid #ffffffa6;backdrop-filter:blur(8px) saturate(1.15);box-shadow:inset 0 1px 2px #fff,inset 0 -1px 2px #ffffff77,0 6px 12px -5px color-mix(in srgb,var(--accent-deep) 25%,transparent)!important}
+#phone .play-big,#screen-main .play-entry{background:linear-gradient(130deg,color-mix(in srgb,var(--accent-deep) 70%,white),color-mix(in srgb,var(--accent-deep) 88%,transparent) 49%,var(--accent-deep));border:1px solid #ffffff99;backdrop-filter:blur(10px) saturate(1.2);box-shadow:inset 1px 2px 2px #ffffff99,inset -1px -2px 3px #ffffff30,0 8px 16px -6px color-mix(in srgb,var(--accent-deep) 40%,transparent)!important}
+#phone .like.liked{background:linear-gradient(135deg,#ffffffaa,var(--accent-soft));border-color:#ffffffdd}
+#screen-main .home-state-zone .status{background:linear-gradient(135deg,#ffffff80,#ffffff26);box-shadow:inset 0 1px 1px #ffffffd9;backdrop-filter:blur(8px)}
+#screen-main .rec-card,#screen-main .rec-card.primary{background:linear-gradient(135deg,color-mix(in srgb,var(--card-paper) 66%,white),var(--card-paper) 70%,var(--card-soft))!important;border-top-color:#ffffffd9!important;box-shadow:inset 0 1px 1px #ffffffbb!important}
+[data-atmosphere=halo] .atmosphere-hero{background:none}
+[data-atmosphere=halo] .atmosphere-hero:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 22% 30%,#ffffffb3,transparent 42%),radial-gradient(ellipse at 80% 72%,color-mix(in srgb,var(--accent-deep) 18%,transparent),transparent 49%);mask-image:linear-gradient(#000 65%,transparent)}
+/* Match the supplied optical-glass reference with a wider annulus and etched tracks. */
+.glass-orb,.player-orb{border-color:#ffffffbb;background:radial-gradient(circle at 36% 25%,#ffffff35,transparent 65%);box-shadow:inset 1px 2px 3px #ffffffd9,2px 16px 28px -8px color-mix(in srgb,var(--accent-deep) 26%,transparent)}
+.glass-orb:before,.player-orb:before{mask:radial-gradient(circle,transparent 42%,#000 44%,#000 70%,transparent 71%);background:conic-gradient(from -35deg,#fffffff2,#ffffff22 50deg,color-mix(in srgb,var(--accent) 16%,transparent) 95deg,#ffffff66 145deg,#fffffff2 205deg,#ffffff33 245deg,color-mix(in srgb,var(--accent) 18%,transparent) 280deg,#fffffff2)}
+.glass-orb:after,.player-orb:after{inset:35px;border-color:#ffffffbb;box-shadow:inset 0 1px 3px #ffffff80,0 2px 4px color-mix(in srgb,var(--accent-deep) 10%,transparent)}
+.orb-satellite{display:none}
+.etched-tracks{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2;color:var(--accent-deep)}
+.etched-tracks .track-lines,.etched-tracks .track-orbit{transform-origin:120px 120px}
+.track-lines{opacity:.65}
+.track-lines circle{fill:none;stroke:currentColor;stroke-width:.65;opacity:.5;stroke-linecap:round}
+.track-dot{fill:currentColor;opacity:.6;stroke:#ffffffb3;stroke-width:1}
+.player-orb .etched-tracks{rotate:var(--sound-angle,0deg);transition:rotate .7s ease-out}
+.audio-light{mask:radial-gradient(circle,transparent 44%,#000 46%,#000 70%,transparent 71%)}
+#phone .play-big{background:radial-gradient(ellipse at 25% 16%,#ffffff66,transparent 58%),linear-gradient(145deg,color-mix(in srgb,var(--accent-deep) 68%,transparent),var(--accent-deep));box-shadow:inset 1px 2px 3px #ffffffb3,inset -1px -1px 3px #ffffff66,0 10px 15px -6px color-mix(in srgb,var(--accent-deep) 35%,transparent)!important}
+@media(prefers-reduced-motion:reduce){.player-orb .etched-tracks{transition:none;rotate:0deg}}

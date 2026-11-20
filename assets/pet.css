@@ -1,0 +1,50 @@
+.pet-trigger{border:0;background:none;box-shadow:none;padding:0;width:210px;height:170px;display:block;position:relative;cursor:grab;touch-action:none;border-radius:50%;isolation:isolate}
+.pet-trigger:active{cursor:grabbing}
+.pet-trigger canvas{width:100%;height:100%;display:block;pointer-events:none}
+.pet-trigger:focus-visible{outline:2px solid var(--accent-deep);outline-offset:6px}
+.pet-caption{font-size:13px;color:var(--accent-deep);margin:7px 0 0;line-height:1.8;text-align:center;min-height:24px;max-width:275px}
+.pet-label{display:flex;align-items:center;justify-content:center;gap:7px;font-size:12px;color:var(--muted);margin-top:5px}
+.pet-label svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#screen-main .atmosphere-hero{display:flex;flex-direction:column;justify-content:center;align-items:center}
+#screen-main .section-title{display:none}
+#screen-main .rail{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:12px;overflow:visible;border:1px solid #ffffff88;border-radius:22px;background:#ffffff40;padding:0;backdrop-filter:blur(8px)}
+#screen-main .rec-card,#screen-main .rec-card.primary{height:40px;min-height:40px;display:flex;align-items:center;justify-content:center;gap:5px;background:transparent!important;border:0!important;border-radius:0;padding:0;box-shadow:none!important}
+#screen-main .rec-card .name,#screen-main .rec-card.primary .name{font-size:11px;line-height:1}
+#screen-main .rec-card .scene-symbol{width:18px;height:18px}
+#screen-main .rec-card .cap{display:none}
+#screen-main .home-state-zone .status{padding:4px 2px;background:none;border:0;box-shadow:none;backdrop-filter:none;font-size:10px;gap:6px}
+#screen-main .home-state-zone .status b{font-size:13px}
+#screen-main .home-state-zone .status+p{font-size:10px!important}
+#screen-main .play-entry{padding:8px 14px;min-height:44px}
+#screen-main .play-entry small{display:none}
+.pet-trigger[data-ready=false]:after{content:'正在唤醒…';position:absolute;left:0;right:0;top:60px;font-size:12px;color:var(--muted)}
+#screen-main .rec-card,#screen-main .rec-card.primary{flex-direction:row!important}
+#screen-main .rec-card .scene-symbol{order:-1}
+
+/* The toy, data strip and navigation each own a separate layout row. */
+#screen-main .main-body{display:grid;grid-template-rows:minmax(225px,1fr) auto;min-height:0;overflow-y:auto;padding-bottom:84px}
+#screen-main .atmosphere-hero{min-height:225px;margin:0;overflow:hidden;contain:paint;padding:14px 0 22px}
+#screen-main .home-state-zone{isolation:isolate;position:relative;z-index:2;padding-top:12px;padding-bottom:8px;flex-shrink:0}
+#screen-main .home-state-zone .status{position:relative;transform:none;white-space:nowrap;min-height:30px;line-height:1.5}
+#screen-main .home-state-zone .status+p{line-height:1.5}
+#screen-player .controls{display:grid!important;grid-template-columns:1fr 1.25fr 1fr;align-items:center;justify-items:center;gap:0!important;width:100%;min-height:100px;position:relative;padding:8px 0;overflow:visible}
+#screen-player #like-btn{grid-column:1;grid-row:1;width:48px;height:48px;margin:0;justify-self:center}
+#screen-player #play-toggle{grid-column:2;grid-row:1;width:80px;height:80px;min-width:80px;margin:0;justify-self:center}
+#screen-player .player-pet{position:relative;inset:auto;grid-column:3;grid-row:1;justify-self:center;width:76px;height:76px;margin:0;padding:0;z-index:2;cursor:pointer;touch-action:manipulation;overflow:visible}
+#screen-player .player-pet canvas{display:block;width:100%;height:100%;pointer-events:none}
+.pet-toy-reply{position:absolute;bottom:calc(100% - 3px);left:50%;transform:translateX(-50%);white-space:nowrap;font-size:11px;line-height:1.5;color:var(--accent-deep);pointer-events:none}
+.pet-toy-reply:not(:empty){padding:5px 9px;border-radius:12px;background:color-mix(in srgb,var(--paper) 76%,white)}
+@media(max-height:680px){#screen-main .main-body{grid-template-rows:minmax(210px,1fr) auto;padding-bottom:72px}#screen-main .atmosphere-hero{min-height:210px;padding:4px 0 12px}.pet-caption{margin-top:0;font-size:12px}.pet-label{font-size:11px;margin-top:2px}#screen-player #play-toggle{width:72px;height:72px;min-width:72px}#screen-player .controls{min-height:90px}#screen-player .player-pet{width:68px;height:68px}}
+#screen-player .controls{height:auto;grid-template-rows:84px}
+#screen-player #like-btn,#screen-player #play-toggle{position:relative;inset:auto;transform:none;translate:none}
+
+#screen-main .rec-card .scene-symbol{position:static!important;inset:auto!important;flex:0 0 16px;width:16px;height:16px;transform:none!important}#screen-main .rec-card{gap:4px}#screen-main .rec-card .name{white-space:nowrap}
+
+.pet-portrait{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}.pet-trigger[data-boot] .pet-portrait{animation:pet-first-breath 4s ease-in-out infinite}@keyframes pet-first-breath{50%{transform:translateY(-2px)}}@media(prefers-reduced-motion:reduce){.pet-trigger[data-boot] .pet-portrait{animation:none}}
+
+/* Keep the approved circular transport and retain an inset keyboard focus cue. */
+#screen-player #play-toggle{aspect-ratio:1;border-radius:50%;}
+#screen-player #play-toggle:focus:not(:focus-visible){outline:none;}
+#screen-player #play-toggle:focus-visible{outline:2px solid rgba(255,255,255,.92);outline-offset:-6px;}
+
+[data-banpai-container="wechat"] :is(#open-device,#open-status,.sub-card,[data-unavailable="wechat"]){display:none!important;}

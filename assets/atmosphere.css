@@ -1,0 +1,47 @@
+/* Two calm visual thirds above one compact action third. */
+#screen-main:before,#screen-main:after{display:none}
+#screen-main{background:var(--paper)}
+#screen-main>.top{flex-shrink:0;position:relative;z-index:3}
+#screen-main .main-body{display:flex;flex-direction:column;overflow-y:auto;padding:0 22px 90px;position:relative}
+.atmosphere-hero{flex:1 1 auto;min-height:180px;position:relative;display:grid;place-items:center;margin:0 -22px;overflow:hidden;isolation:isolate}
+.home-state-zone{flex:0 0 auto;position:relative;z-index:2}
+#screen-main .home-state-zone .status{margin:0;padding:9px 12px;border-radius:15px;font-size:11px;background:color-mix(in srgb,var(--paper) 55%,white);position:relative;z-index:1}
+#screen-main .home-state-zone .status b{font-size:16px}
+#screen-main .home-state-zone .status+p{margin:5px 2px 0!important;font-size:10px!important;line-height:1.4}
+#screen-main .section-title{margin:13px 0 7px 2px;font-size:11px;letter-spacing:.06em}
+#screen-main .rail{padding:0 0 6px;gap:9px}
+#screen-main .rec-card,#screen-main .rec-card.primary{min-height:94px;padding:10px 12px;border-radius:17px;flex-basis:39%}
+#screen-main .rec-card .name,#screen-main .rec-card.primary .name{font-size:15px}
+#screen-main .rec-card .scene-symbol{width:30px;height:30px;top:13px}
+#screen-main .rec-card:before{width:52px;height:52px;top:3px}
+#screen-main .rec-card .cap{height:12px;font-size:10px}
+#screen-main .main-body p.copy-quiet{display:none}
+#screen-main .states-entry{margin:5px 0 0;padding:7px 12px;font-size:11px;min-height:32px}
+#screen-main .main-dock{z-index:4;padding-top:12px}
+.quiet-mark{width:min(57vw,225px);max-height:72%;aspect-ratio:1;overflow:visible;color:var(--accent-deep)}
+.quiet-mark :is(circle,path){fill:none;stroke:currentColor;stroke-width:.7;opacity:.25}
+.quiet-mark .mark-wash{stroke:none;fill:var(--accent-soft);opacity:.55}
+.quiet-mark .mark-dot{fill:currentColor;stroke:none;opacity:.5}
+.quiet-mark .mark-arc{stroke-width:1;opacity:.35}
+.mark-rings{transform-origin:120px 120px;animation:quiet-expand 14s ease-in-out infinite}
+[data-atmosphere=halo] .atmosphere-hero{background:radial-gradient(ellipse at 50% 48%,color-mix(in srgb,var(--accent-soft) 60%,transparent),transparent 65%)}
+.lake-scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;z-index:-2;animation:lake-drift 28s ease-in-out infinite;mask-image:linear-gradient(to bottom,transparent,#000 12%,#000 70%,transparent)}
+[data-atmosphere=lake] .atmosphere-hero:after,[data-atmosphere=horizon] .atmosphere-hero:after{content:'';position:absolute;inset:0;background:var(--paper);opacity:.14;z-index:-1;pointer-events:none}
+[data-atmosphere=horizon] .lake-scene{opacity:.45}
+[data-atmosphere=horizon] .quiet-mark{width:min(46vw,180px);color:var(--accent-deep)}
+[data-atmosphere=horizon] .mark-wash{fill:var(--paper);opacity:.5}
+#screen-main:not(.is-active) .atmosphere-hero *{animation-play-state:paused}
+@keyframes quiet-expand{0%,100%{scale:.975;opacity:.7}50%{scale:1.025;opacity:1}}
+@keyframes lake-drift{0%,100%{transform:scale(1.015) translateY(0)}50%{transform:scale(1.045) translateY(-3px)}}
+@media(min-width:431px){.quiet-mark{width:220px}}
+@media(max-height:740px){.atmosphere-hero{min-height:120px}#screen-main .rec-card,#screen-main .rec-card.primary{min-height:85px}#screen-main .section-title{margin-top:9px}}
+@media(prefers-reduced-motion:reduce){.atmosphere-hero *{animation:none!important}}
+/* B: 17% larger, very low amplitude double pulse and gently undulating outlines. */
+[data-atmosphere=halo] .quiet-mark{width:min(68vw,264px);max-height:78%}
+[data-atmosphere=halo] .mark-rings{animation:none;transform-origin:120px 120px;will-change:transform}
+[data-atmosphere=halo] .mark-wash{transform-origin:120px 120px}
+[data-atmosphere=halo] .speaker-contour{stroke-width:.85;opacity:.32;fill:none}
+[data-atmosphere=halo] .mark-arc,[data-atmosphere=halo] .mark-dot{transform-origin:120px 120px}
+[data-atmosphere=halo] .halo-active .mark-arc,[data-atmosphere=halo] .halo-active .mark-dot{animation:halo-orbit 32s linear infinite}
+@keyframes halo-orbit{to{rotate:360deg}}
+@media(prefers-reduced-motion:reduce){[data-atmosphere=halo] .quiet-mark *{animation:none!important;will-change:auto}}

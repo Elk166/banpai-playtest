@@ -1,0 +1,54 @@
+/* Three proposals share layout and scene palette; decoration is not biometric data. */
+.home-soundfield{height:158px;width:100%;color:var(--accent-deep);position:relative;pointer-events:none;flex-shrink:0}
+.home-soundfield svg{width:100%;height:100%;overflow:visible}
+.home-soundfield :is(circle,ellipse,path){fill:none;stroke:currentColor;stroke-width:.8;opacity:.3;vector-effect:non-scaling-stroke}
+.home-soundfield svg>g{transform-origin:180px 79px}
+.home-soundfield .field-drift{animation:field-tilt 18s ease-in-out infinite}
+.home-soundfield .field-drift circle{fill:currentColor;stroke:none;opacity:.6}
+.field-orbit{animation:field-breathe 12s ease-in-out infinite}
+.field-left{animation:field-left 12s ease-in-out infinite}
+.field-right{animation:field-right 12s ease-in-out infinite}
+.home-soundfield .field-bridge{opacity:.14;stroke-dasharray:2 7}
+.home-soundfield .ribbon-line{animation:ribbon-drift 16s ease-in-out infinite;transform-origin:180px 79px}
+.home-soundfield .ribbon-line:nth-child(2n){animation-delay:-6s}
+#phone:not([data-page=main]) .home-soundfield{animation-play-state:paused}
+#screen-main:not(.is-active) .home-soundfield *{animation-play-state:paused}
+/* Keep the same 72px primary and 48px favourite target, in exactly the same positions. */
+#play-icon{opacity:0}
+.control-glyph{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.control-glyph svg{width:25px;height:25px;overflow:visible}
+.control-glyph path{stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.control-glyph .pause-stroke{fill:none}
+.control-glyph .play-stroke{fill:currentColor;stroke-width:1}
+[data-concept] .play-big{background:var(--accent-deep);color:var(--paper);isolation:isolate;transition:background .3s,border-radius .3s}
+[data-concept] .play-big:before,[data-concept] .play-big:after{content:'';position:absolute;inset:-7px;border:1px solid color-mix(in srgb,var(--accent-deep) 22%,transparent);border-radius:inherit;pointer-events:none;z-index:-1}
+[data-concept=orbit] .play-big:before{border-right-color:transparent;border-top-color:transparent;rotate:-30deg}
+[data-concept=orbit] .play-big:after{inset:-3px;border:0;border-radius:50%;width:4px;height:4px;left:51%;top:-8px;background:var(--accent-deep);opacity:.6;z-index:1}
+[data-concept=orbit] .play-big.visual-playing:before{animation:control-orbit 16s linear infinite}
+[data-concept=orbit] .like{border:1px solid color-mix(in srgb,var(--accent-deep) 16%,transparent);border-radius:50%;background:transparent}
+[data-concept=orbit] .back{background:transparent}
+[data-concept=echo] .play-big{border-radius:24px;background:var(--accent-soft);color:var(--accent-deep)}
+[data-concept=echo] .play-big:before{inset:0;translate:5px 5px;border:0;background:color-mix(in srgb,var(--accent-deep) 10%,transparent);z-index:-1}
+[data-concept=echo] .play-big:after{inset:0;border:1px solid color-mix(in srgb,var(--accent-deep) 25%,transparent)}
+[data-concept=echo] .play-big.visual-playing:after{animation:echo-breathe 7s ease-in-out infinite}
+[data-concept=echo] .like{border-radius:16px;background:color-mix(in srgb,var(--paper) 70%,white)}
+[data-concept=echo] .like.liked{background:var(--accent-soft)}
+[data-concept=echo] .back{border-radius:13px;background:color-mix(in srgb,var(--paper) 55%,white)}
+[data-concept=echo] .back:before{border-radius:13px}
+[data-concept=ribbon] .play-big{border-radius:50% 50% 36% 50%;background:transparent;color:var(--accent-deep);border:1.4px solid var(--accent-deep)}
+[data-concept=ribbon] .play-big:before{inset:5px;border-color:color-mix(in srgb,var(--accent-deep) 16%,transparent);border-left-color:transparent}
+[data-concept=ribbon] .play-big:after{display:none}
+[data-concept=ribbon] .play-big.visual-playing:before{animation:control-orbit 20s linear infinite}
+[data-concept=ribbon] .like{background:transparent;border-radius:50% 50% 36% 50%;border:1px solid color-mix(in srgb,var(--accent-deep) 18%,transparent)}
+[data-concept=ribbon] .like.liked{background:var(--accent-soft)}
+[data-concept=ribbon] .back:before{border:0;border-bottom:1px solid color-mix(in srgb,var(--accent-deep) 30%,transparent);border-radius:0;inset:7px}
+@keyframes field-breathe{0%,100%{scale:.98}50%{scale:1.025}}
+@keyframes field-tilt{0%,100%{rotate:-5deg}50%{rotate:5deg}}
+@keyframes field-left{0%,100%{translate:0 0}50%{translate:8px 0}}
+@keyframes field-right{0%,100%{translate:0 0}50%{translate:-8px 0}}
+@keyframes ribbon-drift{0%,100%{translate:0 0;opacity:.2}50%{translate:0 -3px;opacity:.36}}
+@keyframes control-orbit{to{rotate:360deg}}
+@keyframes echo-breathe{0%,100%{scale:1}50%{scale:1.06}}
+@media(prefers-reduced-motion:reduce){.home-soundfield *,[data-concept] .play-big:before,[data-concept] .play-big:after{animation:none!important}}
+/* SVG rotation already encodes its centre; avoid applying that pivot twice. */
+.home-soundfield .ribbon-line{transform-origin:0 0}

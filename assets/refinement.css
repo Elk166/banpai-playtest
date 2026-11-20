@@ -1,0 +1,86 @@
+@import url('./fonts.css');
+/* Presentation layer only. Original layouts, hit targets and handlers remain. */
+:root{--font:'Noto Sans SC','PingFang SC',sans-serif;--ease-soft:cubic-bezier(.16,1,.3,1)}
+body,button,input,select,textarea{font-family:var(--font)!important;font-synthesis:none;-webkit-font-smoothing:antialiased}
+body{font-feature-settings:'palt';color:var(--ink,#202523)}
+h1,h2,h3,b,strong{font-weight:500}h1,h2{letter-spacing:-.025em}button{letter-spacing:.01em}
+.progress,.status b,.stat b,.status-num b{font-variant-numeric:tabular-nums}
+button,[role=button],summary,select,input{ -webkit-tap-highlight-color:transparent }
+button,[role=button],summary{touch-action:manipulation;transition:background-color .22s,color .22s,box-shadow .22s;cursor:pointer}
+button:focus-visible,[role=button]:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent-deep,var(--scene-deep,#476b58));outline-offset:4px}
+::selection{background:var(--accent-soft,#d9ebdf);color:var(--ink,#202523)}
+input{caret-color:var(--accent-deep,#476b58)}
+/* Keep the baseline geometry. Hide redundant descriptions without moving controls. */
+.copy-quiet{visibility:hidden!important;pointer-events:none!important}
+.greeting span{visibility:hidden}
+.rec-card .pill{visibility:hidden}
+.player-tags span:not(:last-child){visibility:hidden}
+.icon{stroke-linecap:round;stroke-linejoin:round}
+.btn-primary,.play-entry,.play-big{box-shadow:none!important}
+.rec-card,.scene-tile,.home-card{box-shadow:none!important}
+.rec-card:active{transform:none!important}
+.device,.avatar,.back,.code-btn{background:color-mix(in srgb,var(--paper,#e3f0e7) 65%,white 35%)}
+.screen{animation:quiet-enter 240ms var(--ease-soft) both}
+.home-dimmer{animation:quiet-enter 180ms ease-out both}
+.home-card{animation:card-open 300ms var(--ease-soft) both}
+.switch:before,.toggle:before{transition:transform 240ms var(--ease-soft)}
+.style-options button,.presets button,.style-chips button{transition:background-color .22s,color .22s,border-color .22s}
+.details-body{animation:quiet-enter .22s ease-out both}
+summary:after{transition:rotate .24s var(--ease-soft)}details[open]>summary:after{rotate:180deg}
+.tap-feedback{position:fixed;pointer-events:none;z-index:2147483640;border:1px solid currentColor;border-radius:50%;width:18px;height:18px;margin:-9px;color:var(--accent-deep,var(--scene-deep,#476b58))}
+@keyframes quiet-enter{from{opacity:.65}to{opacity:1}}
+@keyframes card-open{from{opacity:.5;translate:0 -5px;scale:.985}to{opacity:1;translate:0 0;scale:1}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.tap-feedback{display:none}}
+:root{--muted:#536158;--faint:#536158}
+.phone{--muted:#536158;--faint:#536158}
+.btn-primary,.code-btn,.home-card .device-action{background:var(--accent-deep,#476b58)!important;color:#fff}
+.play-entry small{opacity:1;color:#eef3ec}
+.type-small{font-size:11px!important}
+.preview-status{position:fixed!important;left:calc(50% + 215px)!important;bottom:20px!important;font-size:11px!important;color:#536158!important;pointer-events:none}
+.inline-icon{width:1em;height:1em;display:inline-block;vertical-align:-.1em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:600px){.preview-status{left:auto!important;right:8px!important;top:0!important;bottom:auto!important;font-size:10px!important;line-height:14px;opacity:.8}}
+/* Scene illustrations remain inside the original recommendation hit areas. */
+#screen-main{background:radial-gradient(ellipse at 94% 18%,color-mix(in srgb,var(--accent-soft) 48%,transparent),transparent 52%),radial-gradient(ellipse at 0% 85%,color-mix(in srgb,var(--accent) 13%,transparent),transparent 65%),linear-gradient(165deg,color-mix(in srgb,var(--paper) 77%,white),var(--paper))}
+#screen-main .rec-card:after{display:none}
+#screen-main .rec-card{background:color-mix(in srgb,var(--paper) 53%,white 47%);border-color:color-mix(in srgb,var(--accent) 16%,white);isolation:isolate}
+#screen-main .rec-card.primary{background:var(--accent-soft)}
+#screen-main .rec-card:before{content:'';position:absolute;width:84px;height:84px;left:50%;top:27px;translate:-50% 0;border-radius:50%;background:color-mix(in srgb,var(--accent) 5%,transparent);z-index:-1;pointer-events:none}
+.scene-symbol{position:absolute;width:43px;height:43px;left:50%;top:42px;translate:-50% 0;color:var(--accent-deep);overflow:visible;pointer-events:none}
+.scene-symbol path,.scene-symbol rect,.scene-symbol circle{fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
+.scene-symbol .scene-detail{opacity:.48;stroke-width:1}
+.rec-card .name{letter-spacing:.02em}
+.like{border:0;background:color-mix(in srgb,var(--paper) 60%,white);color:var(--accent-deep);border-radius:43% 57% 52% 48% / 51% 45% 55% 49%;transition:background .25s,color .25s,border-radius .3s}
+.like .icon{width:23px;height:23px;overflow:visible}
+.like .heart-body{fill:transparent;stroke:currentColor;stroke-width:1.5;transition:fill .24s,stroke .24s}
+.like.liked{color:var(--accent-deep);background:var(--accent-soft);border-radius:50%}
+.like.liked .heart-body{fill:currentColor}
+.like .heart-spark{opacity:0;stroke-width:1.2}
+.like.liked .heart-spark{animation:heart-spark .5s ease-out both}
+.back{border-color:transparent;background:transparent;border-radius:50%;color:var(--accent-deep)}
+.back .icon{width:22px;height:22px}
+.back:before{content:'';position:absolute;inset:0;border:1px solid color-mix(in srgb,var(--accent) 18%,transparent);border-radius:50%;pointer-events:none}
+.back{position:relative}
+.back .return-tail{opacity:.3}
+.back:active .return-tail{opacity:1}
+@keyframes heart-spark{0%{opacity:0;scale:.8}35%{opacity:.6}100%{opacity:0;scale:1.18}}
+@media(prefers-reduced-motion:reduce){.like.liked .heart-spark{animation:none}}
+/* Scene color belongs to each state, independent of the selected page theme. */
+#screen-main .greeting{display:none}
+#screen-main .status{margin-top:18px}
+#screen-main .rec-card,.scene-tile{background:linear-gradient(155deg,color-mix(in srgb,var(--card-paper) 74%,white),var(--card-paper))!important;border-color:color-mix(in srgb,var(--card-ink) 14%,transparent)!important}
+#screen-main .rec-card.primary{background:linear-gradient(155deg,var(--card-paper),var(--card-soft))!important}
+#screen-main .rec-card:before{background:color-mix(in srgb,var(--card-ink) 5%,transparent)}
+#screen-main .rec-card .scene-symbol,#screen-main .rec-card .arrow{color:var(--card-ink)}
+.scene-tile .ico{color:var(--card-ink);background:color-mix(in srgb,var(--card-paper) 50%,white)}
+.scene-tile .scene-symbol{position:static;translate:none;width:22px;height:22px;color:var(--card-ink)}
+.scene-tile .scene-symbol :is(path,rect,circle){vector-effect:non-scaling-stroke;stroke-width:1.2}
+#screen-main{isolation:isolate}
+#screen-main:before,#screen-main:after{content:'';position:absolute;pointer-events:none;z-index:-1;width:360px;height:360px;border-radius:50%;border:1px solid color-mix(in srgb,var(--accent) 8%,transparent);right:-190px;bottom:14%;animation:home-tide 20s ease-in-out infinite}
+#screen-main:after{width:430px;height:430px;right:-225px;bottom:10%;animation-delay:-7s;opacity:.55}
+#screen-main.is-active .scene-symbol .symbol-motion{transform-box:fill-box;transform-origin:center;animation:scene-settle 10s ease-in-out infinite}
+#screen-main.is-active [data-scene=relax] .symbol-motion{animation-name:scene-exhale;animation-delay:-3s}
+#screen-main.is-active [data-scene=office] .symbol-motion{animation-delay:-6s}
+@keyframes home-tide{0%,100%{transform:translate(0,0) scale(.98);opacity:.4}50%{transform:translate(-14px,-12px) scale(1.035);opacity:.85}}
+@keyframes scene-settle{0%,35%,65%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}
+@keyframes scene-exhale{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@media(prefers-reduced-motion:reduce){#screen-main:before,#screen-main:after,#screen-main.is-active .scene-symbol .symbol-motion{animation:none}}
