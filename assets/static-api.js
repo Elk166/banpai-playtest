@@ -31,7 +31,7 @@
         const target = preferences.energy ?? 46;
         const currentId = url.searchParams.get('current_id');
         const score = track => Math.abs(track.energy-target)
-          - 15 * Number(track.styles.some(style => preferences.styles?.includes(style)));
+          - 15 * Number(preferences.personalized !== false && track.styles.some(style => preferences.styles?.includes(style)));
         const items = matches.filter(track => track.id !== currentId)
           .sort((a, b) => score(a)-score(b)).slice(0, 30).map(publicTrack);
         return {items};

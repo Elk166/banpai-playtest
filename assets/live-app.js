@@ -136,7 +136,10 @@
       mediaSession.playbackState=event.current?(audio.paused?'paused':'playing'):'none';
     }
     if(event.type==='track') {
-      lastMedia=0;historyWritten=false;trackHeard=0;
+      const position=event.position ?? audio.currentTime;
+      lastMedia=position;historyWritten=false;trackHeard=0;scrubbing=false;
+      updateSeek(position,event.current.duration);
+      $('.progress').lastElementChild.textContent=BanpaiListening.format(event.current.duration);
       const t=event.current;if(mediaSession&&window.MediaMetadata)mediaSession.metadata=new MediaMetadata({title:t.title,artist:'半拍 BANPAI'});$('.player-title').textContent=t.title;
       $('.player-meta').textContent=t.styles.join(' · ')+' · '+t.duration_label;
       $('.player-tags').replaceChildren(...t.styles.map(text=>{const span=document.createElement('span');span.textContent=text;return span;}));
@@ -144,7 +147,7 @@
     }
     if(event.type==='timeupdate') {
       if(!scrubbing)updateSeek(audio.currentTime);
-      $('.progress').lastElementChild.textContent=BanpaiListening.format(audio.duration);
+      $('.progress').lastElementChild.textContent=BanpaiListening.format(duration());
       const delta=audio.currentTime-lastMedia;
       // Count media progress only. Seeking/buffering never adds wall time.
       if(running&&delta>0){elapsed+=delta;trackHeard+=delta;}
@@ -290,13 +293,28 @@
     return connecting;
   }
   const originalShow=show;
+  let adjustReturn='screen-player';
   show = id => {
+    if (id==='screen-adjust') {
+      const origin=document.querySelector('.screen.is-active')?.id;
+      if(origin && origin!=='screen-adjust')adjustReturn=origin;
+    }
     if (embedded && id === 'screen-profile' && user?.identity !== 'wechat') {
       return safely(async () => { if (await allowAccountAction()) originalShow(id); })();
     }
     if (!embedded && id === 'screen-status') return;
     return originalShow(id === 'screen-login' ? 'screen-main' : id);
   };
+  window.addEventListener('message',event=>{
+    if(event.origin===location.origin && event.source===$('#xy-preview').contentWindow &&
+      event.data==='banpai-adjust-close')show(adjustReturn);
+  });
+  if (staticBeta) {
+    const start=document.createElement('button');
+    start.type='button';start.className='btn-ghost';start.id='public-start';
+    start.textContent='播放当前场景';start.onclick=enterSelectedPlayer;
+    $('#screen-main .rail').before(start);
+  }
   document.querySelectorAll('[data-preview="login"], #screen-login, #logout').forEach(el=>el.remove());
   if (!embedded) {
     document.querySelectorAll('#open-device, #open-status, #screen-status, #screen-profile .sub-card').forEach(el=>el.remove());
@@ -440,8 +458,8 @@
   const oldSeek=$('.progress .track'), seek=document.createElement('input');
   seek.type='range';seek.className='music-seek';seek.min='0';seek.max='1000';seek.step='1';seek.value='0';seek.setAttribute('aria-label','曲目进度');oldSeek.replaceWith(seek);
   const duration=()=>Number.isFinite(audio.duration)?audio.duration:(playback.current?.duration||0);
-  function updateSeek(seconds){
-    const total=duration(), ratio=total?Math.min(1,Math.max(0,seconds/total)):0;
+  function updateSeek(seconds,total=duration()){
+    const ratio=total?Math.min(1,Math.max(0,seconds/total)):0;
     seek.value=String(Math.round(ratio*1000));seek.style.setProperty('--played',ratio*100+'%');
     seek.setAttribute('aria-valuetext',BanpaiListening.format(seconds)+' / '+BanpaiListening.format(total));
     $('.progress').firstElementChild.textContent=BanpaiListening.format(seconds);

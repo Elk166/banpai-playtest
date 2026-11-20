@@ -4,7 +4,7 @@
  let current=null,wanted=false,pending=false,retry=0,transition=true,master=1,muted=false;
  let history=[],historyIndex=-1,historyIntent=null,overlap=0,crossStarting=false,prepareRetryAt=0,suppressOverlap=false; 
  const create=options.createAudio||(()=>new Audio());
- const emit=(type,error)=>notify({type,current,wanted,pending,audio:active.audio,error});
+ const emit=(type,error,position)=>notify({type,current,wanted,pending,audio:active.audio,error,position});
  const volume=(deck,value)=>{if(!deck)return;deck.level=Math.max(0,Math.min(1,value));const v=deck.level*master*(muted?0:1);if(options.setVolume)options.setVolume(deck.audio,v);else deck.audio.volume=v;};
  const clear=deck=>{if(deck){deck.audio.pause();deck.audio.removeAttribute('src');deck.audio.load();if(deck!==active)options.releaseAudio?.(deck.audio);}};
  function remember(){
@@ -57,7 +57,7 @@
    if(ticket!==generation)return false;
    current=fresh;active.track=fresh;active.ready=false;active.recorded=renew;
    active.audio.src=fresh.stream_url;active.audio.load();active.audio.currentTime=position;
-   volume(active,1);pending=false;emit(renew?'renewed':'track');
+   volume(active,1);pending=false;emit(renew?'renewed':'track',undefined,position);
    if(wanted)await active.audio.play();return true;
   }catch(error){if(ticket===generation){pending=false;wanted=false;active.audio.pause();emit('error');emit('message',error);}return false;}
  }
