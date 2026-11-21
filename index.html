@@ -4,6 +4,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>半拍 BANPAI · 公开体验</title>
+<style>html[data-starting] body { opacity: 0; pointer-events: none; }</style>
+<script>
+  document.documentElement.setAttribute('data-starting', '');
+  // Deferred modules and styles finish before the first visible frame.
+  document.addEventListener('DOMContentLoaded', () => {
+    document.documentElement.removeAttribute('data-starting');
+  }, {once:true});
+</script>
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   :root {
@@ -374,7 +382,7 @@
 <div class="phone" id="phone" data-theme="commute">
 
   <!-- 登录 / 注册 -->
-  <section class="screen is-active" id="screen-login">
+  <section class="screen" id="screen-login">
     <div>
       <div class="brand">
         <span class="brand-mark"><i></i><i></i><i></i></span>
@@ -862,8 +870,7 @@
 
   // 初始化
   renderOnboard();
-  // 为了浏览器预览方便，默认停留在登录页；登录后按首次教程流程走。
-  show('screen-login');
+  show('screen-main');
 </script>
 <script>
   // 浏览器预览快捷入口：?screen=main / player / adjust / profile / onboard
